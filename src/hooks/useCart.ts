@@ -8,7 +8,7 @@ export const useCart = () => {
         return localStorageCart ? JSON.parse(localStorageCart) : [];
     };
 
-    const [data, setData] = useState(db);
+    const [data] = useState(db);
     const [cart, setCart] = useState(initialCart);
 
     const MAX_ITEMS = 5;
@@ -32,11 +32,11 @@ export const useCart = () => {
         }
     }
 
-    function removeFromCart(id) {
+    function removeFromCart(id : Guitar['id']) {
         setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
     }
 
-    function increaseQuantity(id) {
+    function increaseQuantity(id : Guitar['id']) {
         const updatedCart = cart.map((item) => {
             if (item.id === id && item.quantity < MAX_ITEMS) {
                 return {
@@ -50,7 +50,7 @@ export const useCart = () => {
         setCart(updatedCart);
     }
 
-    function decreaseQuantity(id) {
+    function decreaseQuantity(id : Guitar['id']) {
         const updatedCart = cart.map((item) => {
             if (item.id === id && item.quantity > MIN_ITEMS) {
                 return {
